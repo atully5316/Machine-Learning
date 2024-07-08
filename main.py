@@ -2,15 +2,15 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.datasets import load_boston
+from sklearn.datasets import fetch_california_housing
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 
-# Load the Boston Housing dataset
-boston = load_boston()
-data = pd.DataFrame(boston.data, columns=boston.feature_names)
-data['PRICE'] = boston.target
+# Load the California Housing dataset
+california = fetch_california_housing()
+data = pd.DataFrame(california.data, columns=california.feature_names)
+data['MedHouseVal'] = california.target
 
 # Display the first few rows of the dataset
 print(data.head())
@@ -19,8 +19,8 @@ print(data.head())
 print(data.isnull().sum())
 
 # Split the data into features (X) and target (y)
-X = data.drop('PRICE', axis=1)
-y = data['PRICE']
+X = data.drop('MedHouseVal', axis=1)
+y = data['MedHouseVal']
 
 # Split the data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -31,7 +31,7 @@ sns.heatmap(data.corr(), annot=True, cmap='coolwarm')
 plt.show()
 
 # Plotting a pairplot to see relationships
-sns.pairplot(data, x_vars=['RM', 'LSTAT', 'PTRATIO'], y_vars='PRICE', height=5, aspect=0.7, kind='scatter')
+sns.pairplot(data, x_vars=['MedInc', 'AveRooms', 'AveOccup'], y_vars='MedHouseVal', height=5, aspect=0.7, kind='scatter')
 plt.show()
 
 # Create and train the model
@@ -57,6 +57,6 @@ plt.title("Actual vs Predicted Prices")
 plt.show()
 
 # Example: Predicting the price for a new set of features
-new_data = np.array([[0.1, 20, 3, 0, 0.5, 6, 65, 4, 2, 300, 15, 400, 5]])
+new_data = np.array([[8.3252, 41.0, 6.98412698, 1.02380952, 322.0, 2.55555556, 37.88, -122.23]])
 predicted_price = model.predict(new_data)
 print("Predicted Price:", predicted_price)
