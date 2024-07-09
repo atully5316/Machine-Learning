@@ -10,7 +10,7 @@ import ta  # Technical Analysis library
 
 # Load historical stock price data using yfinance
 ticker = 'MSFT'  # Example: Microsoft Inc.
-stock_data = yf.download(ticker, start='2000-01-01', end='2023-01-01')
+stock_data = yf.download(ticker, start='1980-01-01', end='2023-01-01')
 stock_data['Date'] = stock_data.index
 
 # Feature Engineering

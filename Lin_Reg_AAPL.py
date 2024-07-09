@@ -10,7 +10,7 @@ import ta  # Technical Analysis library
 
 # Load historical stock price data using yfinance
 ticker = 'AAPL'  # Example: Apple Inc.
-stock_data = yf.download(ticker, start='1950-01-01', end='2024-01-01')
+stock_data = yf.download(ticker, start='1980-01-01', end='2023-01-01')
 stock_data['Date'] = stock_data.index
 
 # Feature Engineering
